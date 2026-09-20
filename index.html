@@ -1,268 +1,40 @@
-<!DOCTYPE html>
+python3 - <<'PY'
+from pathlib import Path
+p=Path('outputs/rhythm-and-music.html')
+s=p.read_text()
+# Replace entire file with robust revised version for reliable behavior and richer graphics
+p.write_text(r'''<!doctype html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rhythm and Music</title>
-    <style>
-        body {
-            background-color: #0047AB; /* Blu Cobalto Vivace */
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            overflow-x: hidden;
-        }
-        /* Note musicali decorative sullo sfondo */
-        .nota {
-            position: absolute;
-            font-size: 24px;
-            opacity: 0.3;
-            color: #fff;
-            user-select: none;
-        }
-        header {
-            margin-bottom: 40px;
-        }
-        header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-        }
-        .slogan {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-            line-height: 1.6;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .strumenti-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        .strumento {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        .pannello {
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            max-width: 650px;
-            margin: 0 auto 40px auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            text-align: left;
-        }
-        .pannello h3 { margin-top: 0; color: #0047AB; }
-        .campo-gruppo {
-            margin-bottom: 20px;
-        }
-        .campo-gruppo label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        .campo-gruppo input, .campo-gruppo select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .riga-autore {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 8px;
-            width: 100%;
-        }
-        .riga-autore input {
-            flex-grow: 1;
-        }
-        .btn-piu {
-            background: #0047AB;
-            color: white;
-            border: none;
-            padding: 0 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .btn-piu:hover { background: #003380; }
-        .area-upload {
-            border: 3px dashed #0047AB;
-            padding: 30px;
-            text-align: center;
-            border-radius: 10px;
-            background: #f0f4f8;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-        .area-upload h4 { margin: 0 0 10px 0; color: #0047AB; }
-        .area-upload p { margin: 0; font-size: 0.9rem; color: #555; }
-        .griglia-pagamento {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        .btn-azione {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            text-align: center;
-            box-sizing: border-box;
-        }
-        .btn-gratis { background: #28a745; color: white; width: 100%; margin-bottom: 10px; }
-        .btn-paga { background: #ffc107; color: #333; }
-        .btn-contatta {
-            background: transparent;
-            border: 2px solid white;
-            color: white;
-            padding: 10px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 50px;
-        }
-        .btn-contatta:hover { background: white; color: #0047AB; }
-        .modal-messaggio {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            color: #333;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            z-index: 1000;
-            width: 90%;
-            max-width: 400px;
-        }
-        .modal-messaggio textarea {
-            width: 100%;
-            height: 100px;
-            margin-bottom: 15px;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 999;
-        }
-        footer {
-            font-size: 0.8rem;
-            margin-top: 40px;
-            opacity: 0.7;
-            padding-bottom: 20px;
-        }
-    </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rhythm & Music Studio</title>
+<style>
+:root{--blue:#071a78;--cyan:#5ee7ff;--pink:#ff5bc8;--gold:#ffd166;--glass:#ffffff18}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Segoe UI,sans-serif;color:#fff;background:radial-gradient(circle at 20% 10%,#2435a5 0,#0b1161 38%,#03051f 100%);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(115deg,#ffffff05 1px,transparent 1px),linear-gradient(25deg,#ffffff04 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(#000,#0000);z-index:0}.aurora{position:fixed;width:55vw;height:55vw;border-radius:50%;filter:blur(70px);opacity:.22;pointer-events:none;animation:glow 9s ease-in-out infinite alternate;z-index:0}.a1{background:#ff43bd;left:-20vw;top:20vh}.a2{background:#16d9ff;right:-20vw;top:-15vh;animation-delay:-3s}@keyframes glow{to{transform:translate(5vw,8vh) scale(1.15)}}
+#note-layer,.floating-instruments{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}.note{position:absolute;font-size:clamp(25px,4vw,60px);color:#fff;text-shadow:0 0 15px currentColor;opacity:.75;animation:float linear infinite}.note:nth-child(3n){color:var(--cyan)}.note:nth-child(3n+1){color:var(--pink)}@keyframes float{0%{transform:translate3d(0,110vh,0) rotate(0deg)}100%{transform:translate3d(8vw,-20vh,0) rotate(360deg)}}.instrument{position:absolute;font-size:clamp(30px,5vw,75px);opacity:.13;animation:sway 7s ease-in-out infinite alternate}.instrument:nth-child(even){animation-delay:-3s}@keyframes sway{to{transform:translateY(-25px) rotate(10deg) scale(1.08)}}
+main{position:relative;z-index:3;max-width:1080px;margin:auto;padding:28px 18px 60px}.hero{text-align:center;padding:40px 10px 20px}.badge{display:inline-block;padding:8px 16px;border:1px solid #ffffff45;border-radius:99px;background:#ffffff12;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;font-size:.75rem}.hero h1{font-size:clamp(3rem,8vw,6.7rem);line-height:.92;margin:18px 0;background:linear-gradient(90deg,#fff,var(--cyan),#fff,var(--pink));background-size:250%;-webkit-background-clip:text;color:transparent;animation:shine 7s linear infinite}@keyframes shine{to{background-position:250%}}.hero p{max-width:760px;margin:auto;color:#d8ddff;font-size:1.1rem;line-height:1.7}.staff{height:125px;margin:28px auto;position:relative;overflow:hidden;opacity:.75;transform:rotate(-1deg);animation:wave 5s ease-in-out infinite alternate}.staff:before,.staff:after{content:"";position:absolute;left:-5%;right:-5%;height:70px;top:25px;background:repeating-linear-gradient(to bottom,transparent 0 12px,#80eaff 13px 15px);filter:drop-shadow(0 0 5px #5ee7ff)}.staff:after{transform:translateY(7px);opacity:.4}@keyframes wave{to{transform:rotate(1deg) skewX(-2deg)}}.staff span{position:absolute;font-size:70px;top:18px;left:10%;color:var(--gold);z-index:2;animation:staffnote 4s ease-in-out infinite alternate}@keyframes staffnote{to{left:82%;transform:rotate(18deg)}}
+.card{background:linear-gradient(145deg,#ffffff1b,#ffffff08);border:1px solid #ffffff30;box-shadow:0 25px 70px #0007,inset 0 1px #fff3;backdrop-filter:blur(16px);border-radius:28px;padding:30px;max-width:760px;margin:25px auto}.card h2{margin-top:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{margin-bottom:18px}.field.full{grid-column:1/-1}label{display:block;font-weight:700;margin-bottom:8px;color:#dce7ff}input,select,textarea{width:100%;padding:13px 14px;border:1px solid #ffffff35;border-radius:12px;background:#050a3caa;color:#fff;font:inherit;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #5ee7ff22}.author-row{display:flex;gap:9px;margin-bottom:9px}.author-row input{flex:1}.btn{border:0;border-radius:12px;padding:13px 17px;font-weight:800;cursor:pointer;transition:.2s;box-shadow:0 7px 18px #0003}.btn:hover{transform:translateY(-2px);filter:brightness(1.1)}.add{background:linear-gradient(135deg,var(--pink),#9c5cff);color:#fff;font-size:1.3rem;min-width:48px}.upload{border:2px dashed #62e8ff88;border-radius:18px;padding:30px;text-align:center;background:#07175a99;cursor:pointer;transition:.2s}.upload:hover,.upload.drag{background:#1a3e9699;border-color:var(--cyan);transform:scale(1.01)}.upload .icon{font-size:3.2rem}.upload p{margin:8px 0;color:#cbd6ff}.status{min-height:27px;margin:15px 0;font-weight:700}.ok{color:#6dffad}.err{color:#ff8d9b}.results{border-top:1px solid #ffffff30;padding-top:20px}.actions{display:flex;gap:12px;flex-wrap:wrap}.primary{background:linear-gradient(135deg,#18c98d,#2de6be);color:#052e2c}.buy{background:linear-gradient(135deg,var(--gold),#ff9f43);color:#331d00;flex:1}.contact{display:block;margin:25px auto;background:transparent;border:1px solid #ffffff88;color:#fff}.modal-bg{display:none;position:fixed;inset:0;background:#000a;z-index:10}.modal{display:none;position:fixed;z-index:11;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92%,440px);padding:26px;border-radius:22px;background:#10185e;border:1px solid #ffffff35;box-shadow:0 20px 80px #0009}.close{background:#ffffff18;color:#fff;margin-top:8px;width:100%}@media(max-width:650px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.card{padding:21px}.actions>*{width:100%}}
+</style>
 </head>
 <body>
-
-    <!-- Note sparse sullo sfondo -->
-    <div class="nota" style="top:10%; left:5%;">♪</div>
-    <div class="nota" style="top:15%; right:8%;">♫</div>
-    <div class="nota" style="top:40%; left:8%;">𝄢</div>
-    <div class="nota" style="top:70%; right:5%;">𝄞</div>
-
-    <header>
-        <h1>Rhythm and Music</h1>
-        <div class="slogan">
-            Prendiamo il tuo brano, lo scomponiamo ed estraiamo esattamente solo la traccia melodica principale per creare un pentagramma preciso e perfetto. Generiamo spartiti musicali da brani caricati in qualsiasi formato. Vi vengo a sfidare!
-        </div>
-    </header>
-
-    <!-- Icone strumenti grafici -->
-    <div class="strumenti-container">
-        <div class="strumento">🥁 Batteria</div>
-        <div class="strumento">🎸 Chitarra</div>
-        <div class="strumento">🎷 Sax</div>
-        <div class="strumento">🎻 Violino</div>
-        <div class="strumento">🎸 Basso</div>
-    </div>
-
-    <!-- Pannello Principale di Dialogo -->
-    <div class="pannello">
-        <h3>1. Configura il Brano</h3>
-        
-        <div class="campo-gruppo">
-            <label>Titolo del brano:</label>
-            <input type="text" placeholder="Inserisci il titolo...">
-        </div>
-
-        <div class="campo-gruppo">
-            <label>Autore / Autori:</label>
-            <div id="container-autori">
-                <div class="riga-autore">
-                    <input type="text" placeholder="Nome dell'autore...">
-                    <button type="button" class="btn-piu" title="Aggiungi Autore" onclick="aggiungiAutore()">+</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="campo-gruppo">
-            <label>Tempo / Andamento:</label>
-            <select id="seleziona-tempo">
-                <option value="auto">Rileva automaticamente (BPM da traccia)</option>
-                <option value="Lento">Lento</option>
-                <option value="Adagio">Adagio</option>
-                <option value="Andante">Andante</option>
-                <option value="Moderato">Moderato</option>
-                <option value="Libero">Libero</option>
-                <option value="Presto">Presto</option>
-            </select>
-        </div>
-
-        <h3>2. Carica il File Audio</h3>
-        <div class="area-upload" onclick="document.getElementById('file-audio').click()">
-            <h4>Trascina qui il file o clicca per caricarlo</h4>
-            <p><strong>Si possono caricare tutti i formati audio senza esclusione. Supporta specialmente i file MIDI!</strong></p>
-            <input type="file" id="file-audio" style="display:none;" onchange="simulaElaborazione()">
-        </div>
-
-        <!-- Risultati e Pagamento simulati dopo il caricamento -->
-        <div id="blocco-risultati" style="display:none; border-top: 2px solid #ccc; padding-top: 20px; margin-top: 20px;">
-            <h3 style="color:#28a745;">✓ Brano Elaborato con Successo!</h3>
-            <p>Traccia melodica estratta. BPM rilevati: <b>120 BPM</b>. Scegli come procedere:</p>
-            
-            <button class="btn-azione btn-gratis" onclick="alert('Download prima pagina PDF avviato!')">Scarica e Stampa la Prima Pagina (Gratis)</button>
-            
-            <div class="griglia-pagamento">
-                <button class="btn-azione btn-paga" onclick="alert('Reindirizzamento sicuro a PayPal per lo Spartito Completo (2,00€)')">Acquista tutto lo Spartito (2,00€)</button>
-                <button class="btn-azione btn-paga" onclick="alert('Reindirizzamento sicuro a PayPal per gli Accordi Chitarra (1,00€)')">Accordi per Chitarra (1,00€)</button>
-            </div>
-            <p style="font-size:0.8rem; color:#777; margin-top:10px; text-align:center;">Pagamenti sicuri elaborati via PayPal direttamente sul conto dell'amministratore.</p>
-        </div>
-    </div>
-
-    <!-- Pulsante Contatta sulla piattaforma -->
-    <button class="btn-contatta" onclick="apriContatti()">Contatta la Piattaforma</button>
-
-    <!-- Modale Messaggi Asincrono -->
-    <div class="overlay" id="overlay" onclick="chiudiContatti()"></div>
-    <div class="modal-messaggio" id="modal-contatti">
-        <h3 style="margin-top:0; color:#0047AB;">Invia un messaggio</h3>
-        <p style="font-size:0.9rem; color:#555;">Scrivi la tua richiesta. Il proprietario leggerà ed正式 elaborerà il messaggio al prossimo accesso sulla piattaforma.</p>
-        <textarea placeholder="Scrivi qui il tuo messaggio..."></textarea>
-        <button class="btn-azione btn-gratis" onclick="inviaMessaggio()">Invia Messaggio</button>
+<div class="aurora a1"></div><div class="aurora a2"></div><div id="note-layer"></div><div class="floating-instruments" id="instruments"></div>
+<main><section class="hero"><span class="badge">Audio · Melodia · Spartiti</span><h1>Rhythm<br>& Music</h1><p>Trasforma il tuo brano in una nuova esperienza musicale: carica l'audio, configura i dettagli e preparati a dare forma alla tua melodia.</p><div class="staff"><span>♪</span></div></section>
+<section class="card"><h2>🎼 Configura il tuo brano</h2><div class="grid"><div class="field"><label for="title">Titolo del brano</label><input id="title" placeholder="Es. La mia composizione"></div><div class="field"><label for="tempo">Tempo / andamento</label><select id="tempo"><option value="auto">Rileva automaticamente</option><option>Lento</option><option>Adagio</option><option>Andante</option><option>Moderato</option><option>Presto</option></select></div><div class="field full"><label>Autore / autori</label><div id="authors"><div class="author-row"><input placeholder="Nome dell'autore"><button class="btn add" type="button" aria-label="Aggiungi autore">+</button></div></div></div><div class="field full"><label>File audio</label><div class="upload" id="dropzone" tabindex="0"><div class="icon">🎧</div><strong>Clicca per scegliere un file oppure trascinalo qui</strong><p>MP3, WAV, OGG, M4A, MIDI · massimo 50 MB</p><input id="audio" type="file" accept="audio/*,.mid,.midi" hidden></div></div></div><div class="status" id="status" aria-live="polite"></div><section class="results" id="results" hidden><h2 class="ok">✓ File pronto per l'elaborazione</h2><p>Demo frontend: BPM rilevati <b>120 BPM</b>.</p><div class="actions"><button class="btn primary" id="download">Scarica prima pagina (demo)</button><button class="btn buy" data-name="Spartito completo">Spartito completo · 2,00€</button><button class="btn buy" data-name="Accordi chitarra">Accordi chitarra · 1,00€</button></div></section></section><button class="btn contact" id="open">✉ Contatta la piattaforma</button></main>
+<div class="modal-bg" id="shade"></div><div class="modal" id="modal"><h2>Invia un messaggio</h2><textarea id="message" rows="5" placeholder="Scrivi qui la tua richiesta..."></textarea><button class="btn primary" id="send" style="width:100%;margin-top:12px">Invia messaggio</button><button class="btn close" id="close">Chiudi</button></div>
+<script>
+// Decorazioni animate
+const noteChars=['♪','♫','♬','𝄞','♩','♩','♪','♫']; const layer=document.querySelector('#note-layer'); noteChars.forEach((n,i)=>{const e=document.createElement('span');e.className='note';e.textContent=n;e.style.left=(3+i*12+Math.random()*8)+'%';e.style.animationDuration=(10+Math.random()*12)+'s';e.style.animationDelay=(-Math.random()*15)+'s';layer.appendChild(e)});['🎸','🎹','🎷','🎻','🥁','🎺','🪕','🎼'].forEach((x,i)=>{const e=document.createElement('span');e.className='instrument';e.textContent=x;e.style.left=(Math.random()*92)+'%';e.style.top=(5+Math.random()*85)+'%';e.style.animationDuration=(5+Math.random()*6)+'s';document.querySelector('#instruments').appendChild(e)});
+// Autori: delegazione sul contenitore, quindi funziona anche per righe aggiunte
+const authors=document.querySelector('#authors'); authors.addEventListener('click',e=>{if(!e.target.matches('.add'))return;const row=document.createElement('div');row.className='author-row';row.innerHTML='<input placeholder="Nome dell\'autore"><button class="btn add" type="button" aria-label="Aggiungi autore">+</button>';authors.appendChild(row);row.querySelector('input').focus()});
+// Upload: click, tastiera e drag & drop
+const zone=document.querySelector('#dropzone'), fileInput=document.querySelector('#audio'), status=document.querySelector('#status'), results=document.querySelector('#results'); zone.addEventListener('click',()=>fileInput.click());zone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')fileInput.click()});['dragenter','dragover'].forEach(ev=>zone.addEventListener(ev,e=>{e.preventDefault();zone.classList.add('drag')}));['dragleave','drop'].forEach(ev=>zone.addEventListener(ev,e=>{e.preventDefault();zone.classList.remove('drag')}));zone.addEventListener('drop',e=>{if(e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0])});fileInput.addEventListener('change',e=>{if(e.target.files.length)handleFile(e.target.files[0])});
+function handleFile(file){const allowed=/\.(mp3|wav|ogg|m4a|mid|midi)$/i.test(file.name)||file.type.startsWith('audio/');if(!allowed){status.textContent='Formato non supportato. Usa MP3, WAV, OGG, M4A o MIDI.';status.className='status err';results.hidden=true;return}if(file.size>50*1024*1024){status.textContent='Il file supera il limite di 50 MB.';status.className='status err';results.hidden=true;return}status.className='status';status.textContent='File selezionato: '+file.name+' · elaborazione demo...';results.hidden=true;setTimeout(()=>{status.textContent='✓ File caricato correttamente: '+file.name;status.className='status ok';results.hidden=false},500)}
+// Azioni demo e modale
+const shade=document.querySelector('#shade'),modal=document.querySelector('#modal');function toggle(v){shade.style.display=v?'block':'none';modal.style.display=v?'block':'none'}document.querySelector('#open').onclick=()=>toggle(true);document.querySelector('#close').onclick=()=>toggle(false);shade.onclick=()=>toggle(false);document.querySelector('#send').onclick=()=>{const m=document.querySelector('#message');if(!m.value.trim())return alert('Scrivi un messaggio prima di inviarlo.');alert('Messaggio inviato.');m.value='';toggle(false)};document.querySelector('#download').onclick=()=>alert('Demo: la generazione del PDF verrà collegata al backend.');document.querySelectorAll('[data-name]').forEach(b=>b.onclick=()=>alert('Demo: checkout per '+b.dataset.name+'.');
+</script></body></html>''')
+PY
+# basic checks
+python3 - <<'PY'
+from pathlib import Path
+p=Path('outputs/rhythm-and-music.html'); s=p.read_text(); assert len(s)>1000 and 'handleFile' in s and 'authors.addEventListener' in s
+print(len(s))
+PY
