@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhythm and Music</title>
+    <style>
+        body {
+            background-color: #0047AB; /* Blu Cobalto Vivace */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Note musicali decorative sullo sfondo */
+        .nota {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.3;
+            color: #fff;
+            user-select: none;
+        }
+        header {
+            margin-bottom: 40px;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .slogan {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .strumenti-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .strumento {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .pannello {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+        .pannello h3 { margin-top: 0; color: #0047AB; }
+        .campo-gruppo {
+            margin-bottom: 20px;
+        }
+        .campo-gruppo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .campo-gruppo input, .campo-gruppo select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .riga-autore {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .btn-piu {
+            background: #0047AB;
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .btn-piu:hover { background: #003380; }
+        .area-upload {
+            border: 3px dashed #0047AB;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            background: #f0f4f8;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .area-upload h4 { margin: 0 0 10px 0; color: #0047AB; }
+        .area-upload p { margin: 0; font-size: 0.9rem; color: #555; }
+        .griglia-pagamento {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .btn-azione {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .btn-gratis { background: #28a745; color: white; }
+        .btn-paga { background: #ffc107; color: #333; }
+        .btn-contatta {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+        .btn-contatta:hover { background: white; color: #0047AB; }
+        .modal-messaggio {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+            width: 90%;
+            max-width: 400px;
+        }
+        .modal-messaggio textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 999;
+        }
+        footer {
+            font-size: 0.8rem;
+            margin-top: 40px;
+            opacity: 0.7;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Note sparse sullo sfondo -->
+    <div class="nota" style="top:10%; left:5%;">♪</div>
+    <div class="nota" style="top:15%; right:8%;">♫</div>
+    <div class="nota" style="top:40%; left:8%;">𝄢</div>
+    <div class="nota" style="top:70%; right:5%;">𝄞</div>
+
+    <header>
+        <h1>Rhythm and Music</h1>
+        <div class="slogan">
+            Prendiamo il tuo brano, lo scomponiamo ed estraiamo esattamente solo la traccia melodica principale per creare un pentagramma preciso e perfetto. Generiamo spartiti musicali da brani caricati in qualsiasi formato. Vi vengo a sfidare!
+        </div>
+    </header>
+
+    <!-- Icone strumenti grafici -->
+    <div class="strumenti-container">
+        <div class="strumento">🥁 Batteria</div>
+        <div class="strumento">🎸 Chitarra</div>
+        <div class="strumento">🎷 Sax</div>
+        <div class="strumento">🎻 Violino</div>
+        <div class="strumento">🎸 Basso</div>
+    </div>
+
+    <!-- Pannello Principale di Dialogo -->
+    <div class="pannello">
+        <h3>1. Configura il Brano</h3>
+        
+        <div class="campo-gruppo">
+            <label>Titolo del brano:</label>
+            <input type="text" placeholder="Inserisci il titolo...">
+        </div>
+
+        <div class="campo-gruppo">
+            <label>Autore / Autori:</label>
+            <div id="container-autori">
+                <div class="riga-autore">
+                    <input type="text" placeholder="Nome dell'autore...">
+                    <button type="button" class="btn-piu" title="Aggiungi Autore" onclick="aggiungiAutore()">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="campo-gruppo">
+            <label>Tempo / Andamento:</label>
+            <select id="seleziona-tempo">
+                <option value="auto">Rileva automaticamente (BPM da traccia)</option>
+                <option value="Lento">Lento</option>
+                <option value="Adagio">Adagio</option>
+                <option value="Andante">Andante</option>
+                <option value="Moderato">Moderato</option>
+                <option value="Libero">Libero</option>
+                <option value="Presto">Presto</option>
+            </select>
+        </div>
+
+        <h3>2. Carica il File Audio</h3>
+        <div class="area-upload" onclick="document.getElementById('file-audio').click()">
+            <h4>Trascina qui il file o clicca per caricarlo</h4>
+            <p><strong>Si possono caricare tutti i formati audio senza esclusione. Supporta specialmente i file MIDI!</strong></p>
+            <input type="file" id="file-audio" style="display:none;" onchange="simulaElaborazione()">
+        </div>
+
+        <!-- Risultati e Pagamento simulati dopo il caricamento -->
+        <div id="blocco-risultati" style="display:none; border-top: 2px solid #ccc; padding-top: 20px; margin-top: 20px;">
+            <h3 style="color:#28a745;">✓ Brano Elaborato con Successo!</h3>
+            <p>Traccia melodica estratta. BPM rilevati: <b>120 BPM</b>. Scegli come procedere:</p>
+            
+            <button class="btn-azione btn-gratis" onclick="alert('Download prima pagina PDF avviato!')">Scarica e Stampa la Prima Pagina (Gratis)</button>
+            
+            <div class="griglia-pagamento">
+                <button class="btn-azione btn-paga" onclick="alert('Reindirizzamento sicuro a PayPal per lo Spartito Completo (2,00€)')">Acquista tutto lo Spartito (2,00€)</button>
+                <button class="btn-azione btn-paga" onclick="alert('Reindirizzamento sicuro a PayPal per gli Accordi Chitarra (1,00€)')">Accordi per Chitarra (1,00€)</button>
+            </div>
+            <p style="font-size:0.8rem; color:#777; margin-top:10px; text-align:center;">Pagamenti sicuri elaborati via PayPal direttamente sul conto dell'amministratore.</p>
+        </div>
+    </div>
+
+    <!-- Pulsante Contatta sulla piattaforma -->
+    <button class="btn-contatta" onclick="apriContatti()">Contatta la Piattaforma</button>
+
+    <!-- Modale Messaggi Asincrono -->
+    <div class="overlay" id="overlay" onclick="chiudiContatti()"></div>
+    <div class="modal-messaggio" id="modal-contatti">
+        <h3 style="margin-top:0; color:#0047AB;">Invia un messaggio</h3>
+        <p style="font-size:0.9rem; color:#555;">Scrivi la tua richiesta. Il proprietario leggerà ed elaborerà il messaggio al prossimo accesso sulla piattaforma.</p>
+        <textarea placeholder="Scrivi qui il tuo messaggio..."></textarea>
+        <button class="btn-azione btn-gratis" onclick="inviaMessaggio()">Invia Messaggio</button>
+        <button class="btn-azione" style="background:#ccc; margin-top:8px;" onclick="chiudiContatti()">Chiudi</button>
+    </div>
+
+    <footer>
+        Creator MyProject by FedeleMax
+    </footer>
+
+    <script>
+        function aggiungiAutore() {
